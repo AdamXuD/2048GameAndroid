@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xyz.paopaopaoge.viewFor2048.SquareTableLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/table"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:stretchColumns="*"
+android:background="#F5DEB3" >
+
+<TableRow
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <TextView
+        android:id="@+id/tv0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+</TableRow>
+
+<TableRow
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+</TableRow>
+
+<TableRow
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <TextView
+        android:id="@+id/tv8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv11"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+</TableRow>
+
+<TableRow
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <TextView
+        android:id="@+id/tv12"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+
+        />
+
+    <TextView
+        android:id="@+id/tv13"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+
+    <TextView
+        android:id="@+id/tv14"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+
+        />
+
+    <TextView
+        android:id="@+id/tv15"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Num"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@drawable/round_unit"
+        android:layout_margin="3sp"
+        />
+</TableRow>
+
+</xyz.paopaopaoge.viewFor2048.SquareTableLayout>
