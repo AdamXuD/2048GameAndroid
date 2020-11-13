@@ -2,67 +2,34 @@ package xyz.paopaopaoge.game2048;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.zip.Inflater;
+import java.util.Map;
 
 import xyz.paopaopaoge.Game.Game;
+import xyz.paopaopaoge.Utils.DataBaseUtils;
+import xyz.paopaopaoge.Utils.SerializeUtils;
+import xyz.paopaopaoge.viewFor2048.AboutPage;
+import xyz.paopaopaoge.viewFor2048.AchievementDialog;
+import xyz.paopaopaoge.viewFor2048.GameOverDialog;
 
 public class MainActivity extends AppCompatActivity {
 
     Game game = new Game();
     DataBaseUtils db = null;
 
-    TextView[] tvList = new TextView[16];
+    TextView[] tvList = null;
     TextView tv_score = null;
     TextView tv_bestScore = null;
 
     int bestScore = 0;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        LinearLayout gameViewLayout = findViewById(R.id.gameview);
-
-        db = new DataBaseUtils(this);
-
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View gameView = inflater.inflate(R.layout.game_view, null);
-        gameViewLayout.addView(gameView);
-
-        findViewsBySameIds(tvList, "tv");
-        tv_score = findViewById(R.id.score_tv);
-        tv_bestScore = findViewById(R.id.bestScore_tv);
-
-        bestScore = db.queryBestScore();
-        tv_bestScore.setText(String.valueOf(bestScore));
-
-        game.setManualFunc(new MyManualFunc());
-        gameView.setOnTouchListener(new GameTouchListener());
-        game.start();
-
-//        final View testView = View.inflate(this, R.layout.game_over_hint, null);
-//        PopupWindow window = new PopupWindow(testView, 100, 100);
-//        window.showAtLocation(testView, Gravity.CENTER, 0, 0);
-
-
-    }
 
     class GameTouchListener implements View.OnTouchListener {
 
@@ -86,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 //松开
                 case MotionEvent.ACTION_UP:
-                    if (moveX - pressX > 0 && Math.abs(moveY - pressY) < 50) {
+                    if (moveX - pressX > 0 && Math.abs(moveY - pressY) < 150) {
                         game.moveOperation(Game.Key.RIGHT);
-                    } else if (moveX - pressX < 0 && Math.abs(moveY - pressY) < 50) {
+                    } else if (moveX - pressX < 0 && Math.abs(moveY - pressY) < 150) {
                         game.moveOperation(Game.Key.LEFT);
-                    } else if (moveY - pressY > 0 && Math.abs(moveX - pressX) < 50) {
+                    } else if (moveY - pressY > 0 && Math.abs(moveX - pressX) < 150) {
                         game.moveOperation(Game.Key.DOWN);
-                    } else if (moveY - pressY < 0 && Math.abs(moveX - pressX) < 50) {
+                    } else if (moveY - pressY < 0 && Math.abs(moveX - pressX) < 150) {
                         game.moveOperation(Game.Key.UP);
                     }
                     break;
@@ -103,7 +70,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    class MyManualFunc implements Game.ManualFunc {
+    class GameOverBtnClickedListener implements GameOverDialog.OnBtnClickedListener {
+
+        @Override
+        public void onCancelBtnClicked() {
+
+        }
+
+        @Override
+        public void onRestartBtnClicked() {
+            db.insertScore(game.getGameData().score, game.getMaxNum(), game.getGameFlag().hasUndo);
+            game.start();
+        }
+    }
+
+    class GameStateChangedListener implements Game.OnGameStateChangedListener {
 
         @Override
         public void printer() {
@@ -118,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
                         tv.setText(String.valueOf(data.map[row][col]));
                         ((GradientDrawable) tv.getBackground()).setColor(getItemColor(data.map[row][col]));
                     } else {
-                        tv.setText("");
+                        tv.setText(" ");
+                        //TODO ?显示异常？？？
                         ((GradientDrawable) tv.getBackground()).setColor(Color.parseColor("#EFC998"));
                     }
                 }
@@ -131,14 +113,49 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void overHandler() {
-            Toast.makeText(MainActivity.this, "gameOver!", Toast.LENGTH_LONG);
-            db.insertScore(game.getGameData().score, game.getMaxNum(), game.getGameFlag().hasUndo);
+            new GameOverDialog(MainActivity.this, new GameOverBtnClickedListener(), game.getGameData().score).show();
         }
 
         void startAnimation() {
             /*暂时没啥思路*/
-            //TODO 写一下动效
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        db = new DataBaseUtils(this);
+
+        View gameView = findViewById(R.id.gameView);
+
+        tvList = new TextView[16];
+        findViewsBySameIds(tvList, "gametv_");
+        tv_score = findViewById(R.id.tv_score);
+        tv_bestScore = findViewById(R.id.tv_bestScore);
+
+        bestScore = db.queryBestScore();
+        tv_bestScore.setText(String.valueOf(bestScore));
+
+        game.setManualFunc(new GameStateChangedListener());
+        gameView.setOnTouchListener(new GameTouchListener());
+
+        Map<String, String> record = db.queryLastGameRecord();
+        if (record != null)
+            game.goOn(record.get("gameData"), record.get("gameFlag"));
+        else
+            game.start();
+    }
+
+    @Override
+    public void finish() {
+        try {
+            db.insertLastGameRecord(SerializeUtils.serializeObject(game.getGameData()), SerializeUtils.serializeObject(game.getGameFlag()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.finish();
     }
 
 
@@ -189,28 +206,36 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    /*DBG*/
-    public void onUpBtnClick(View v) {
-        game.moveOperation(Game.Key.UP);
+    public void onUndoBtnClicked(View v) {
+        game.undo();
     }
 
-    public void onDownBtnClick(View v) {
-        game.moveOperation(Game.Key.DOWN);
+    public void onAchievementBtnClicked(View v) {
+        new AchievementDialog(this, db.queryScore()).show();
     }
 
-    public void onLeftBtnClick(View v) {
-        game.moveOperation(Game.Key.LEFT);
-    }
-
-    public void onRightBtnClick(View v) {
-        game.moveOperation(Game.Key.RIGHT);
-    }
-
-    public void onRestartBtnClick(View v) {
+    public void onRestartBtnClicked(View v) {
         game.start();
     }
-    /*DBG*/
 
+    public void onAboutBtnClicked(View v) {
+        new AboutPage(this).show();
+    }
 
+    public void onReadmeBtnClicked(View v) {
+        Uri uri= Uri.parse("https://github.com/AdamXuD/2048GameAndroid");
+        Intent intent=new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(uri);
+        startActivity(intent);
+    }
 }
+/*
+ *  TODO
+ *  1.  动效
+ *  4.  网络交互
+ *  5.1 菜单内容 重新开始 查询本地成绩 关于本游戏 使用教程
+ *  5.2 菜单参考 https://blog.csdn.net/qq_34360123/article/details/52800851?utm_medium=distribute.pc_relevant.none-task-blog-title-2&spm=1001.2101.3001.4242
+ *  6.  SweetAlert https://github.com/pedant/sweet-alert-dialog
+ *
+ * */

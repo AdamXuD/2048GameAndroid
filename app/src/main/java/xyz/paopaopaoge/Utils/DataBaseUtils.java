@@ -1,5 +1,6 @@
-package xyz.paopaopaoge.game2048;
+package xyz.paopaopaoge.Utils;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,8 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 public class DataBaseUtils {
 
@@ -26,6 +28,9 @@ public class DataBaseUtils {
                     "maxNum INTEGER NOT NULL DEFAULT (0), " +
                     "hasUndo BOOLEAN DEFAULT 0 NOT NULL, " +
                     "uploadTime DATETIME NOT NULL DEFAULT (datetime('now', 'localtime')));";
+            sqLiteDatabase.execSQL(query);
+
+            query = "CREATE TABLE lastGameRecord (gameData TEXT NOT NULL, gameFlag TEXT NOT NULL);";
             sqLiteDatabase.execSQL(query);
         }
 
@@ -85,7 +90,7 @@ public class DataBaseUtils {
         db.execSQL(query);
     }
 
-    List<ResultRow> queryScore() {
+    public List<ResultRow> queryScore() {
         //"SELECT score, maxNum, hasUndo, uploadTime FROM tableScore ORDER BY score DESC;"
         List<ResultRow> results = new ArrayList<ResultRow>();
         Cursor cursor = db.query("tableScore", new String[]{"score", "maxNum", "hasUndo", "uploadTime"}, null, null, null, null, "score DESC", null);
@@ -103,6 +108,28 @@ public class DataBaseUtils {
             return cursor.getInt(0);
         }
     }
+
+    public Map<String, String> queryLastGameRecord() {
+        Map<String, String> record = null;
+        Cursor cursor = db.query("lastGameRecord", new String[]{"gameData", "gameFlag"}, null, null, null, null, null, null);
+        if (cursor.getCount() != 0){
+            record = new HashMap<String, String>();
+            cursor.moveToNext();
+            record.put("gameData", cursor.getString(0));
+            record.put("gameFlag", cursor.getString(1));
+            db.execSQL("DELETE FROM lastGameRecord;");
+        }
+        cursor.close();
+        return record;
+    }
+
+    public void insertLastGameRecord(String gameDataString, String gameFlagString) {
+        ContentValues values = new ContentValues();
+        values.put("gameData", gameDataString);
+        values.put("gameFlag", gameFlagString);
+        db.insert("lastGameRecord", null, values);
+    }
+
 
     @Override
     protected void finalize() throws Throwable {

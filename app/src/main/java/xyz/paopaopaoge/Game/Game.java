@@ -5,14 +5,16 @@ import androidx.annotation.NonNull;
 import java.util.Random;
 import java.util.Stack;
 
+import xyz.paopaopaoge.Utils.SerializeUtils;
 
-public class Game {
-    public interface ManualFunc{
+
+public class Game{
+    public interface OnGameStateChangedListener{
         public void printer();
         public void overHandler();
     }
 
-    public class GameData implements Cloneable{
+    public static class GameData implements Cloneable, java.io.Serializable{
         public int map[][] = new int[4][4];
         public int score = 0;
         public int step = 0;
@@ -20,20 +22,16 @@ public class Game {
         @NonNull
         @Override
         protected Object clone() {
-            GameData data = null;
-            try {
-                data = (GameData) super.clone();
-            } catch (CloneNotSupportedException e){
-                e.printStackTrace();
-            }
+            GameData data = new GameData();
+            data.score = this.score;
+            data.step = this.step;
             for(int row = 0; row < map.length; row++)
                 data.map[row] = map[row].clone();
-
             return data;
         }
     }
 
-    public class GameFlag {
+    public static class GameFlag implements java.io.Serializable{
         public boolean hasUploaded = false;
         public boolean hasUndo = false;
     }
@@ -42,9 +40,6 @@ public class Game {
         UP, DOWN, LEFT, RIGHT
     };
 
-
-
-
     private boolean isJustMove = false;
 
     private GameData data;
@@ -52,7 +47,7 @@ public class Game {
 
     private Stack<GameData> history = new Stack<GameData>();
 
-    private ManualFunc func = null;
+    private OnGameStateChangedListener func = null;
 
     private Random r;
 
@@ -78,7 +73,18 @@ public class Game {
         func.printer();
     }
 
-    public void setManualFunc(ManualFunc object) {
+    public void goOn(String gameDataString, String gameFlagString) {
+        try {
+            data = (GameData) SerializeUtils.parseObject(gameDataString);
+            flag = (GameFlag) SerializeUtils.parseObject(gameFlagString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        recordMap();
+        func.printer();
+    }
+
+    public void setManualFunc(OnGameStateChangedListener object) {
         this.func = object;
     }
 

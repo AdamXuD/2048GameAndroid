@@ -1,224 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xyz.paopaopaoge.viewFor2048.SquareTableLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/table"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:stretchColumns="*"
-android:background="#F5DEB3" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10sp"
+    android:background="@drawable/round_gameview"
+    android:orientation="vertical">
 
-<TableRow
-    android:layout_height="match_parent"
-    android:layout_weight="1">
-
-    <TextView
-        android:id="@+id/tv0"
+    <xyz.paopaopaoge.viewFor2048.SquareTableLayout
+        android:id="@+id/gameView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+        android:layout_height="wrap_content"
+        android:layout_margin="5sp"
+        android:background="#F5DEB3"
+        android:stretchColumns="*">
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
-</TableRow>
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-<TableRow
-    android:layout_height="match_parent"
-    android:layout_weight="1">
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/tv5"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/tv6"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv7"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
-</TableRow>
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-<TableRow
-    android:layout_height="match_parent"
-    android:layout_weight="1">
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv8"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </TableRow>
 
-    <TextView
-        android:id="@+id/tv9"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/tv10"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv11"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
-</TableRow>
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-<TableRow
-    android:layout_height="match_parent"
-    android:layout_weight="1">
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv12"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </TableRow>
 
-        />
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/tv13"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold"
 
-    <TextView
-        android:id="@+id/tv14"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
+                />
 
-        />
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv15"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Num"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:background="@drawable/round_unit"
-        android:layout_margin="3sp"
-        />
-</TableRow>
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold"
 
-</xyz.paopaopaoge.viewFor2048.SquareTableLayout>
+                />
+
+            <xyz.paopaopaoge.viewFor2048.SquareTextView
+                android:id="@+id/gametv_15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3sp"
+                android:background="@drawable/round_unit"
+                android:gravity="center"
+                android:text="Num"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+    </xyz.paopaopaoge.viewFor2048.SquareTableLayout>
+
+</LinearLayout>

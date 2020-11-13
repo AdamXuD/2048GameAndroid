@@ -18,7 +18,6 @@ public class SquareTableLayout extends TableLayout {
         setMeasuredDimension(getDefaultSize(0, widthMeasureSpec), getDefaultSize(0, heightMeasureSpec));
 
         int childWidthSize = getMeasuredWidth();
-        int childHeightSize = getMeasuredHeight();
 
         heightMeasureSpec = widthMeasureSpec = MeasureSpec.makeMeasureSpec(childWidthSize, MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
