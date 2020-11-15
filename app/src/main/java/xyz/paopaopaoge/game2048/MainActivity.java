@@ -223,19 +223,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onReadmeBtnClicked(View v) {
-        Uri uri= Uri.parse("https://github.com/AdamXuD/2048GameAndroid");
-        Intent intent=new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(uri);
-        startActivity(intent);
+        startActivity(new Intent().setAction(Intent.ACTION_VIEW).setData(Uri.parse("https://github.com/AdamXuD/2048GameAndroid")));
     }
 }
 /*
  *  TODO
- *  1.  动效
- *  4.  网络交互
- *  5.1 菜单内容 重新开始 查询本地成绩 关于本游戏 使用教程
- *  5.2 菜单参考 https://blog.csdn.net/qq_34360123/article/details/52800851?utm_medium=distribute.pc_relevant.none-task-blog-title-2&spm=1001.2101.3001.4242
- *  6.  SweetAlert https://github.com/pedant/sweet-alert-dialog
+ *  1.  动效（有缘再说）
+ *  4.  网络交互（有缘再说）
  *
  * */
